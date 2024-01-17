@@ -24,6 +24,10 @@ get_add[output] {
 	args := concat(" ", add.Value)
 
 	not contains(args, ".tar")
+
+	cnt := count(copy.Value)
+	not (cnt == 3 && startswith(add.Value[0], "file:") || startswith(add.Value[0], "multi:") && add.Value[1] == "in")
+
 	output := {
 		"args": args,
 		"cmd": add,
