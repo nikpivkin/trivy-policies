@@ -19,14 +19,20 @@ package builtin.dockerfile.DS005
 
 import data.lib.docker
 
+is_command_with_hash(cmd, prefix) {
+	count(cmd) == 3
+    startswith(cmd[0], prefix)
+	cmd[1] == "in"
+}
+
 get_add[output] {
 	add := docker.add[_]
 	args := concat(" ", add.Value)
 
 	not contains(args, ".tar")
 
-	cnt := count(copy.Value)
-	not (cnt == 3 && startswith(add.Value[0], "file:") || startswith(add.Value[0], "multi:") && add.Value[1] == "in")
+	not is_command_with_hash(add.Value, "file:")
+	not is_command_with_hash(add.Value, "multi:")
 
 	output := {
 		"args": args,
