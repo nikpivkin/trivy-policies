@@ -1,15 +1,15 @@
 package securitycenter
 
 import (
-	"github.com/aquasecurity/trivy-policies/pkg/rules"
-	"github.com/aquasecurity/trivy/pkg/iac/providers"
-	"github.com/aquasecurity/trivy/pkg/iac/providers/azure/securitycenter"
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
-	"github.com/aquasecurity/trivy/pkg/iac/severity"
-	"github.com/aquasecurity/trivy/pkg/iac/state"
+	"github.com/aquasecurity/trivy-policies/internal/cheks"
+	"github.com/aquasecurity/trivy-policies/pkg/providers"
+	"github.com/aquasecurity/trivy-policies/pkg/providers/azure/securitycenter"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/severity"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
 )
 
-var CheckEnableStandardSubscription = rules.Register(
+var CheckEnableStandardSubscription = cheks.Register(
 	scan.Rule{
 		AVDID:      "AVD-AZU-0045",
 		Provider:   providers.AzureProvider,

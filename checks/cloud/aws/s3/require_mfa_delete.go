@@ -1,15 +1,15 @@
 package s3
 
 import (
-	"github.com/aquasecurity/trivy-policies/pkg/rules"
-	"github.com/aquasecurity/trivy/pkg/iac/framework"
-	"github.com/aquasecurity/trivy/pkg/iac/providers"
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
-	"github.com/aquasecurity/trivy/pkg/iac/severity"
-	"github.com/aquasecurity/trivy/pkg/iac/state"
+	"github.com/aquasecurity/trivy-policies/internal/cheks"
+	"github.com/aquasecurity/trivy-policies/pkg/framework"
+	"github.com/aquasecurity/trivy-policies/pkg/providers"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/severity"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
 )
 
-var CheckRequireMFADelete = rules.Register(
+var CheckRequireMFADelete = cheks.Register(
 	scan.Rule{
 		AVDID:     "AVD-AWS-0170",
 		Provider:  providers.AWSProvider,

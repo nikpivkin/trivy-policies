@@ -3,11 +3,11 @@ package emr
 import (
 	"testing"
 
-	trivyTypes "github.com/aquasecurity/trivy/pkg/iac/types"
+	trivyTypes "github.com/aquasecurity/trivy-policies/pkg/types"
 
-	"github.com/aquasecurity/trivy/pkg/iac/providers/aws/emr"
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
-	"github.com/aquasecurity/trivy/pkg/iac/state"
+	"github.com/aquasecurity/trivy-policies/pkg/providers/aws/emr"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
 	"github.com/stretchr/testify/assert"
 )
 

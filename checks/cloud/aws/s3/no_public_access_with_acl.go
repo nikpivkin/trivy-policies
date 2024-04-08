@@ -3,18 +3,17 @@ package s3
 import (
 	"fmt"
 
-	"github.com/aquasecurity/trivy/pkg/iac/severity"
+	"github.com/aquasecurity/trivy-policies/internal/cheks"
+	"github.com/aquasecurity/trivy-policies/pkg/severity"
 
-	"github.com/aquasecurity/trivy/pkg/iac/state"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
 
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
 
-	"github.com/aquasecurity/trivy-policies/pkg/rules"
-
-	"github.com/aquasecurity/trivy/pkg/iac/providers"
+	"github.com/aquasecurity/trivy-policies/pkg/providers"
 )
 
-var CheckForPublicACL = rules.Register(
+var CheckForPublicACL = cheks.Register(
 	scan.Rule{
 		AVDID:     "AVD-AWS-0092",
 		Provider:  providers.AWSProvider,

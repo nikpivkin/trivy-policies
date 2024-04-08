@@ -1,14 +1,14 @@
 package kms
 
 import (
-	"github.com/aquasecurity/trivy-policies/pkg/rules"
-	"github.com/aquasecurity/trivy/pkg/iac/providers"
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
-	"github.com/aquasecurity/trivy/pkg/iac/severity"
-	"github.com/aquasecurity/trivy/pkg/iac/state"
+	"github.com/aquasecurity/trivy-policies/internal/cheks"
+	"github.com/aquasecurity/trivy-policies/pkg/providers"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/severity"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
 )
 
-var CheckRotateKmsKeys = rules.Register(
+var CheckRotateKmsKeys = cheks.Register(
 	scan.Rule{
 		AVDID:       "AVD-GCP-0065",
 		Provider:    providers.GoogleProvider,

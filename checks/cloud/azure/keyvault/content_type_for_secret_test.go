@@ -3,12 +3,12 @@ package keyvault
 import (
 	"testing"
 
-	trivyTypes "github.com/aquasecurity/trivy/pkg/iac/types"
+	trivyTypes "github.com/aquasecurity/trivy-policies/pkg/types"
 
-	"github.com/aquasecurity/trivy/pkg/iac/state"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
 
-	"github.com/aquasecurity/trivy/pkg/iac/providers/azure/keyvault"
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/providers/azure/keyvault"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
 
 	"github.com/stretchr/testify/assert"
 )

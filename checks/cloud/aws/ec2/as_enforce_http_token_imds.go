@@ -1,14 +1,14 @@
 package ec2
 
 import (
-	"github.com/aquasecurity/trivy-policies/pkg/rules"
-	"github.com/aquasecurity/trivy/pkg/iac/providers"
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
-	"github.com/aquasecurity/trivy/pkg/iac/severity"
-	"github.com/aquasecurity/trivy/pkg/iac/state"
+	"github.com/aquasecurity/trivy-policies/internal/cheks"
+	"github.com/aquasecurity/trivy-policies/pkg/providers"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/severity"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
 )
 
-var CheckASIMDSAccessRequiresToken = rules.Register(
+var CheckASIMDSAccessRequiresToken = cheks.Register(
 	scan.Rule{
 		AVDID:      "AVD-AWS-0130",
 		Aliases:    []string{"aws-autoscaling-enforce-http-token-imds"},

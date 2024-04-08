@@ -5,10 +5,10 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/aquasecurity/trivy/pkg/iac/providers/aws/cloudtrail"
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
-	"github.com/aquasecurity/trivy/pkg/iac/state"
-	trivyTypes "github.com/aquasecurity/trivy/pkg/iac/types"
+	"github.com/aquasecurity/trivy-policies/pkg/providers/aws/cloudtrail"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
+	trivyTypes "github.com/aquasecurity/trivy-policies/pkg/types"
 )
 
 func TestEncryptionCustomerManagedKey(t *testing.T) {

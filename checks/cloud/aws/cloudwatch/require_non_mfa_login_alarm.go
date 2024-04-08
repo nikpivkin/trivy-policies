@@ -1,17 +1,17 @@
 package cloudwatch
 
 import (
-	"github.com/aquasecurity/trivy-policies/pkg/rules"
-	"github.com/aquasecurity/trivy/pkg/iac/framework"
-	"github.com/aquasecurity/trivy/pkg/iac/providers"
-	"github.com/aquasecurity/trivy/pkg/iac/providers/aws/cloudwatch"
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
-	"github.com/aquasecurity/trivy/pkg/iac/severity"
-	"github.com/aquasecurity/trivy/pkg/iac/state"
-	"github.com/aquasecurity/trivy/pkg/iac/types"
+	"github.com/aquasecurity/trivy-policies/internal/cheks"
+	"github.com/aquasecurity/trivy-policies/pkg/framework"
+	"github.com/aquasecurity/trivy-policies/pkg/providers"
+	"github.com/aquasecurity/trivy-policies/pkg/providers/aws/cloudwatch"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/severity"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
+	"github.com/aquasecurity/trivy-policies/pkg/types"
 )
 
-var requireNonMFALoginAlarm = rules.Register(
+var requireNonMFALoginAlarm = cheks.Register(
 	scan.Rule{
 		AVDID:      "AVD-AWS-0148",
 		Provider:   providers.AWSProvider,

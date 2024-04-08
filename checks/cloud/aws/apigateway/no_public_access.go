@@ -1,15 +1,15 @@
 package apigateway
 
 import (
-	"github.com/aquasecurity/trivy-policies/pkg/rules"
-	"github.com/aquasecurity/trivy/pkg/iac/providers"
-	v1 "github.com/aquasecurity/trivy/pkg/iac/providers/aws/apigateway/v1"
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
-	"github.com/aquasecurity/trivy/pkg/iac/severity"
-	"github.com/aquasecurity/trivy/pkg/iac/state"
+	"github.com/aquasecurity/trivy-policies/internal/cheks"
+	"github.com/aquasecurity/trivy-policies/pkg/providers"
+	v1 "github.com/aquasecurity/trivy-policies/pkg/providers/aws/apigateway/v1"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/severity"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
 )
 
-var CheckNoPublicAccess = rules.Register(
+var CheckNoPublicAccess = cheks.Register(
 	scan.Rule{
 		AVDID:       "AVD-AWS-0004",
 		Provider:    providers.AWSProvider,

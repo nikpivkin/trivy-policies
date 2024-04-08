@@ -1,11 +1,11 @@
 package network
 
 import (
-	"github.com/aquasecurity/trivy-policies/pkg/rules"
-	"github.com/aquasecurity/trivy/pkg/iac/providers"
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
-	"github.com/aquasecurity/trivy/pkg/iac/severity"
-	"github.com/aquasecurity/trivy/pkg/iac/state"
+	"github.com/aquasecurity/trivy-policies/internal/cheks"
+	"github.com/aquasecurity/trivy-policies/pkg/providers"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/severity"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
 )
 
 var outdatedSSLPolicies = []string{
@@ -22,7 +22,7 @@ var outdatedSSLPolicies = []string{
 	"Ats Ciphers D ver1",
 }
 
-var CheckUseSecureTlsPolicy = rules.Register(
+var CheckUseSecureTlsPolicy = cheks.Register(
 	scan.Rule{
 		AVDID:       "AVD-NIF-0020",
 		Provider:    providers.NifcloudProvider,

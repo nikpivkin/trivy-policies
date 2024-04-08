@@ -1,14 +1,14 @@
 package rdb
 
 import (
-	"github.com/aquasecurity/trivy-policies/pkg/rules"
-	"github.com/aquasecurity/trivy/pkg/iac/providers"
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
-	"github.com/aquasecurity/trivy/pkg/iac/severity"
-	"github.com/aquasecurity/trivy/pkg/iac/state"
+	"github.com/aquasecurity/trivy-policies/internal/cheks"
+	"github.com/aquasecurity/trivy-policies/pkg/providers"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/severity"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
 )
 
-var CheckNoCommonPrivateDBInstance = rules.Register(
+var CheckNoCommonPrivateDBInstance = cheks.Register(
 	scan.Rule{
 		AVDID:       "AVD-NIF-0010",
 		Aliases:     []string{"nifcloud-rdb-no-common-private-db-instance"},

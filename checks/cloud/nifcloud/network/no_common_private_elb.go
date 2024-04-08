@@ -1,14 +1,14 @@
 package network
 
 import (
-	"github.com/aquasecurity/trivy-policies/pkg/rules"
-	"github.com/aquasecurity/trivy/pkg/iac/providers"
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
-	"github.com/aquasecurity/trivy/pkg/iac/severity"
-	"github.com/aquasecurity/trivy/pkg/iac/state"
+	"github.com/aquasecurity/trivy-policies/internal/cheks"
+	"github.com/aquasecurity/trivy-policies/pkg/providers"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/severity"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
 )
 
-var CheckNoCommonPrivateElasticLoadBalancer = rules.Register(
+var CheckNoCommonPrivateElasticLoadBalancer = cheks.Register(
 	scan.Rule{
 		AVDID:       "AVD-NIF-0019",
 		Aliases:     []string{"nifcloud-network-no-common-private-elb"},

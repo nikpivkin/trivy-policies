@@ -7,16 +7,17 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/aquasecurity/trivy/pkg/iac/framework"
-	_ "github.com/aquasecurity/trivy/pkg/iac/rego"
-	"github.com/aquasecurity/trivy/pkg/iac/rules"
+	"github.com/aquasecurity/trivy-policies/pkg/framework"
+
+	"github.com/aquasecurity/trivy-policies/pkg/registry"
+	_ "github.com/aquasecurity/trivy-policies/pkg/rego" // register Built-in Functions
 )
 
 func main() {
 
 	// organise existing rules by provider
 	keyMap := make(map[string][]string)
-	for _, rule := range rules.GetRegistered(framework.ALL) {
+	for _, rule := range registry.GetRegistered(framework.ALL) {
 		id := rule.GetRule().AVDID
 		if id == "" {
 			continue

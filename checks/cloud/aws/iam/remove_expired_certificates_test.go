@@ -4,11 +4,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/aquasecurity/trivy/pkg/iac/state"
-	trivyTypes "github.com/aquasecurity/trivy/pkg/iac/types"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
+	trivyTypes "github.com/aquasecurity/trivy-policies/pkg/types"
 
-	"github.com/aquasecurity/trivy/pkg/iac/providers/aws/iam"
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/providers/aws/iam"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
 
 	"github.com/stretchr/testify/assert"
 )

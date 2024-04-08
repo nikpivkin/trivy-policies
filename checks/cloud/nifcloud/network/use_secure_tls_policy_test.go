@@ -3,10 +3,10 @@ package network
 import (
 	"testing"
 
-	"github.com/aquasecurity/trivy/pkg/iac/providers/nifcloud/network"
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
-	"github.com/aquasecurity/trivy/pkg/iac/state"
-	trivyTypes "github.com/aquasecurity/trivy/pkg/iac/types"
+	"github.com/aquasecurity/trivy-policies/pkg/providers/nifcloud/network"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
+	trivyTypes "github.com/aquasecurity/trivy-policies/pkg/types"
 	"github.com/stretchr/testify/assert"
 )
 

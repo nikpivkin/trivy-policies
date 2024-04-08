@@ -8,8 +8,8 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/aquasecurity/trivy/pkg/iac/framework"
-	registered "github.com/aquasecurity/trivy/pkg/iac/rules"
+	"github.com/aquasecurity/trivy-policies/pkg/framework"
+	"github.com/aquasecurity/trivy-policies/pkg/registry"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -30,7 +30,7 @@ func Test_AVDPageGeneration(t *testing.T) {
 	}()
 
 	var generateCount int
-	for _, metadata := range registered.GetRegistered(framework.ALL) {
+	for _, metadata := range registry.GetRegistered(framework.ALL) {
 		writeDocsFile(metadata, tmpDir)
 		generateCount++
 	}

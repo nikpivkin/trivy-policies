@@ -12,16 +12,17 @@ import (
 	"text/template"
 
 	policies "github.com/aquasecurity/trivy-policies"
-	"github.com/aquasecurity/trivy/pkg/iac/framework"
-	_ "github.com/aquasecurity/trivy/pkg/iac/rego"
-	registered "github.com/aquasecurity/trivy/pkg/iac/rules"
-	types "github.com/aquasecurity/trivy/pkg/iac/types/rules"
+	"github.com/aquasecurity/trivy-policies/pkg/framework"
+
+	"github.com/aquasecurity/trivy-policies/pkg/registry"
+	_ "github.com/aquasecurity/trivy-policies/pkg/rego" // register Built-in Functions
+	types "github.com/aquasecurity/trivy-policies/pkg/types/rules"
 )
 
 func main() {
 	var generateCount int
 
-	for _, metadata := range registered.GetRegistered(framework.ALL) {
+	for _, metadata := range registry.GetRegistered(framework.ALL) {
 		writeDocsFile(metadata, "avd_docs")
 		generateCount++
 	}

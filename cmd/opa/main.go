@@ -4,8 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	// register Built-in Functions from defsec
-	_ "github.com/aquasecurity/trivy/pkg/iac/rego"
+	_ "github.com/aquasecurity/trivy-policies/pkg/rego" // register Built-in Functions
 	"github.com/open-policy-agent/opa/cmd"
 )
 

@@ -3,20 +3,19 @@ package ec2
 import (
 	"fmt"
 
-	"github.com/aquasecurity/trivy/pkg/iac/severity"
+	"github.com/aquasecurity/trivy-policies/internal/cheks"
+	"github.com/aquasecurity/trivy-policies/pkg/severity"
 
-	"github.com/aquasecurity/trivy/pkg/iac/state"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
 
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
 
-	"github.com/aquasecurity/trivy-policies/pkg/rules"
-
-	"github.com/aquasecurity/trivy/pkg/iac/providers"
+	"github.com/aquasecurity/trivy-policies/pkg/providers"
 
 	"github.com/owenrumney/squealer/pkg/squealer"
 )
 
-var CheckNoSensitiveInfo = rules.Register(
+var CheckNoSensitiveInfo = cheks.Register(
 	scan.Rule{
 		AVDID:       "AVD-AWS-0122",
 		Aliases:     []string{"aws-autoscaling-no-sensitive-info"},

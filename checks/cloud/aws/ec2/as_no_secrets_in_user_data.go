@@ -3,22 +3,21 @@ package ec2
 import (
 	"fmt"
 
-	"github.com/aquasecurity/trivy/pkg/iac/severity"
+	"github.com/aquasecurity/trivy-policies/internal/cheks"
+	"github.com/aquasecurity/trivy-policies/pkg/severity"
 
-	"github.com/aquasecurity/trivy/pkg/iac/state"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
 
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
 
-	"github.com/aquasecurity/trivy-policies/pkg/rules"
-
-	"github.com/aquasecurity/trivy/pkg/iac/providers"
+	"github.com/aquasecurity/trivy-policies/pkg/providers"
 
 	"github.com/owenrumney/squealer/pkg/squealer"
 )
 
 var scanner = squealer.NewStringScanner()
 
-var CheckASNoSecretsInUserData = rules.Register(
+var CheckASNoSecretsInUserData = cheks.Register(
 	scan.Rule{
 		AVDID:       "AVD-AWS-0129",
 		Aliases:     []string{"aws-autoscaling-no-secrets-in-user-data"},

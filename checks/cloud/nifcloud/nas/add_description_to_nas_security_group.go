@@ -1,14 +1,14 @@
 package nas
 
 import (
-	"github.com/aquasecurity/trivy-policies/pkg/rules"
-	"github.com/aquasecurity/trivy/pkg/iac/providers"
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
-	"github.com/aquasecurity/trivy/pkg/iac/severity"
-	"github.com/aquasecurity/trivy/pkg/iac/state"
+	"github.com/aquasecurity/trivy-policies/internal/cheks"
+	"github.com/aquasecurity/trivy-policies/pkg/providers"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/severity"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
 )
 
-var CheckAddDescriptionToNASSecurityGroup = rules.Register(
+var CheckAddDescriptionToNASSecurityGroup = cheks.Register(
 	scan.Rule{
 		AVDID:      "AVD-NIF-0015",
 		Aliases:    []string{"nifcloud-nas-add-description-to-nas-security-group"},

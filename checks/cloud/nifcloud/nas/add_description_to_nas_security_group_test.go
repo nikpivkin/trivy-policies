@@ -3,12 +3,12 @@ package nas
 import (
 	"testing"
 
-	"github.com/aquasecurity/trivy/pkg/iac/providers/nifcloud/nas"
-	trivyTypes "github.com/aquasecurity/trivy/pkg/iac/types"
+	"github.com/aquasecurity/trivy-policies/pkg/providers/nifcloud/nas"
+	trivyTypes "github.com/aquasecurity/trivy-policies/pkg/types"
 
-	"github.com/aquasecurity/trivy/pkg/iac/state"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
 
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
 
 	"github.com/stretchr/testify/assert"
 )

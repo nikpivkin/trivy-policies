@@ -3,16 +3,15 @@ package rds
 import (
 	"fmt"
 
-	"github.com/aquasecurity/trivy/pkg/iac/providers"
-	"github.com/aquasecurity/trivy/pkg/iac/providers/aws/rds"
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
-	"github.com/aquasecurity/trivy/pkg/iac/severity"
-	"github.com/aquasecurity/trivy/pkg/iac/state"
-
-	"github.com/aquasecurity/trivy-policies/pkg/rules"
+	"github.com/aquasecurity/trivy-policies/internal/cheks"
+	"github.com/aquasecurity/trivy-policies/pkg/providers"
+	"github.com/aquasecurity/trivy-policies/pkg/providers/aws/rds"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/severity"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
 )
 
-var CheckPerformanceInsightsEncryptionCustomerKey = rules.Register(
+var CheckPerformanceInsightsEncryptionCustomerKey = cheks.Register(
 	scan.Rule{
 		AVDID:      "AVD-AWS-0078",
 		Provider:   providers.AWSProvider,

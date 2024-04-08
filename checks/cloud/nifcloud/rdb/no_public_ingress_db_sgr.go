@@ -1,15 +1,15 @@
 package rdb
 
 import (
+	"github.com/aquasecurity/trivy-policies/internal/cheks"
 	"github.com/aquasecurity/trivy-policies/internal/cidr"
-	"github.com/aquasecurity/trivy-policies/pkg/rules"
-	"github.com/aquasecurity/trivy/pkg/iac/providers"
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
-	"github.com/aquasecurity/trivy/pkg/iac/severity"
-	"github.com/aquasecurity/trivy/pkg/iac/state"
+	"github.com/aquasecurity/trivy-policies/pkg/providers"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/severity"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
 )
 
-var CheckNoPublicIngressDBSgr = rules.Register(
+var CheckNoPublicIngressDBSgr = cheks.Register(
 	scan.Rule{
 		AVDID:       "AVD-NIF-0011",
 		Aliases:     []string{"nifcloud-rdb-no-public-ingress-db-sgr"},

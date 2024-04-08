@@ -1,16 +1,16 @@
 package ec2
 
 import (
+	"github.com/aquasecurity/trivy-policies/internal/cheks"
 	"github.com/aquasecurity/trivy-policies/internal/cidr"
-	"github.com/aquasecurity/trivy-policies/pkg/rules"
-	"github.com/aquasecurity/trivy/pkg/iac/framework"
-	"github.com/aquasecurity/trivy/pkg/iac/providers"
-	"github.com/aquasecurity/trivy/pkg/iac/scan"
-	"github.com/aquasecurity/trivy/pkg/iac/severity"
-	"github.com/aquasecurity/trivy/pkg/iac/state"
+	"github.com/aquasecurity/trivy-policies/pkg/framework"
+	"github.com/aquasecurity/trivy-policies/pkg/providers"
+	"github.com/aquasecurity/trivy-policies/pkg/scan"
+	"github.com/aquasecurity/trivy-policies/pkg/severity"
+	"github.com/aquasecurity/trivy-policies/pkg/state"
 )
 
-var CheckNoPublicIngressSgr = rules.Register(
+var CheckNoPublicIngressSgr = cheks.Register(
 	scan.Rule{
 		AVDID:     "AVD-AWS-0107",
 		Aliases:   []string{"aws-vpc-no-public-ingress-sgr"},
