@@ -28,6 +28,8 @@ package builtin.aws.apigateway.aws0004
 
 import rego.v1
 
+import data.lib.cloud.value
+
 authorization_none := "NONE"
 
 deny contains res if {
@@ -36,10 +38,10 @@ deny contains res if {
 	some method in api.resources[_].methods
 	not method_is_option(method)
 	not is_apikey_required(api)
-	method.authorizationtype.value == authorization_none
+	value.is_equal(method.authorizationtype, authorization_none)
 	res := result.new("Authorization is not enabled for this method.", method.authorizationtype)
 }
 
-method_is_option(method) := method.httpmethod.value == "OPTION"
+method_is_option(method) := value.is_equal(method.httpmethod, "OPTION")
 
-is_apikey_required(api) := api.apikeyrequired.value
+is_apikey_required(api) := value.is_true(api.apikeyrequired)

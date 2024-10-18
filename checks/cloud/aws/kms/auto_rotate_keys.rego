@@ -30,9 +30,11 @@ package builtin.aws.kms.aws0065
 
 import rego.v1
 
+import data.lib.cloud.value
+
 deny contains res if {
 	some key in input.aws.kms.keys
 	key.usage.value != "SIGN_VERIFY"
-	key.rotationenabled.value == false
+	value.is_false(key.rotationenabled)
 	res := result.new("Key does not have rotation enabled.", key.rotationenabled)
 }

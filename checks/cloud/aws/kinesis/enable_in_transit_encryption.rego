@@ -33,6 +33,8 @@ package builtin.aws.kinesis.aws0064
 
 import rego.v1
 
+import data.lib.cloud.value
+
 deny contains res if {
 	some stream in input.aws.kinesis.streams
 	stream.encryption.type.value != "KMS"
@@ -42,6 +44,6 @@ deny contains res if {
 deny contains res if {
 	some stream in input.aws.kinesis.streams
 	stream.encryption.type.value == "KMS"
-	stream.encryption.kmskeyid.value == ""
+	value.is_empty(stream.encryption.kmskeyid)
 	res := result.new("Stream does not use a custom-managed KMS key.", stream.encryption.kmskeyid)
 }

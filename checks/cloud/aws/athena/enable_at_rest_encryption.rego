@@ -35,6 +35,7 @@ package builtin.aws.athena.aws0006
 import rego.v1
 
 import data.lib.cloud.metadata
+import data.lib.cloud.value
 
 encryption_type_none := ""
 
@@ -56,6 +57,4 @@ deny contains res if {
 	)
 }
 
-is_encrypted(obj) if {
-	obj.encryption.type.value != encryption_type_none
-}
+is_encrypted(obj) if not value.is_equal(obj.encryption.type, encryption_type_none)

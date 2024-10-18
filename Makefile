@@ -1,4 +1,5 @@
 DYNAMIC_REGO_FOLDER=./checks/kubernetes/policies/dynamic
+BUNDLE_FILE=bundle.tar.gz
 
 .PHONY: test
 test:
@@ -44,9 +45,23 @@ create-bundle:
 
 .PHONY: verify-bundle
 verify-bundle:
-	cp bundle.tar.gz scripts/bundle.tar.gz
+	cp $(BUNDLE_FILE) scripts/$(BUNDLE_FILE)
 	cd scripts && go run verify-bundle.go
-	rm scripts/bundle.tar.gz
+	rm scripts/$(BUNDLE_FILE)
 
 build-opa:
 	go build ./cmd/opa
+
+start-registry:
+	docker run --rm -it -d -p 5111:5000 --name registry registry:2 
+
+stop-registry:
+	docker stop registry
+
+push-bundle: create-bundle
+	@REPO=localhost:5111/trivy-checks:latest ;\
+	echo "Pushing to repository: $$REPO" ;\
+	docker run --rm -it --net=host -v $$PWD/${BUNDLE_FILE}:/${BUNDLE_FILE} bitnami/oras:latest push \
+		$$REPO \
+		--config "/dev/null:application/vnd.cncf.openpolicyagent.config.v1+json" \
+		"$(BUNDLE_FILE):application/vnd.cncf.openpolicyagent.layer.v1.tar+gzip"

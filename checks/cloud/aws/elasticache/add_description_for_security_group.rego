@@ -35,6 +35,7 @@ package builtin.aws.elasticache.aws0049
 import rego.v1
 
 import data.lib.cloud.metadata
+import data.lib.cloud.value
 
 deny contains res if {
 	some secgroup in input.aws.elasticache.securitygroups
@@ -45,4 +46,4 @@ deny contains res if {
 	)
 }
 
-has_description(sg) if sg.description.value != ""
+has_description(sg) if not value.is_empty(sg.description)

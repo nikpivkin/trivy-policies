@@ -47,6 +47,7 @@ package builtin.aws.cloudtrail.aws0162
 import rego.v1
 
 import data.lib.cloud.metadata
+import data.lib.cloud.value
 
 deny contains res if {
 	some trail in input.aws.cloudtrail.trails
@@ -57,4 +58,4 @@ deny contains res if {
 	)
 }
 
-is_logging_configured(trail) if trail.cloudwatchlogsloggrouparn.value != ""
+is_logging_configured(trail) if not value.is_empty(trail.cloudwatchlogsloggrouparn)

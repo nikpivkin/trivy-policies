@@ -28,12 +28,17 @@ package builtin.aws.sam.aws0116
 
 import rego.v1
 
+import data.lib.cloud.metadata
+import data.lib.cloud.value
+
 deny contains res if {
 	some api in input.aws.sam.httpapis
 	isManaged(api)
-	api.accesslogging.cloudwatchloggrouparn.value == ""
+	not has_logging(api)
 	res := result.new(
 		"Access logging is not configured.",
-		api.accesslogging,
+		metadata.obj_by_path(api, ["accesslogging", "cloudwatchloggrouparn"]),
 	)
 }
+
+has_logging(api) if not value.is_empty(api.accesslogging.cloudwatchloggrouparn)

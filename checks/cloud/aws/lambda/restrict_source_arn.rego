@@ -35,10 +35,12 @@ package builtin.aws.lambda.aws0067
 
 import rego.v1
 
+import data.lib.cloud.value
+
 deny contains res if {
 	some func in input.aws.lambda.functions
 	some permission in func.permissions
 	endswith(permission.principal.value, ".amazonaws.com")
-	permission.sourcearn.value == ""
+	value.is_empty(permission.sourcearn)
 	res := result.new("Lambda permission lacks source ARN for *.amazonaws.com principal.", permission.sourcearn)
 }

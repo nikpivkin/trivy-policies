@@ -33,8 +33,10 @@ package builtin.aws.mq.aws0071
 
 import rego.v1
 
+import data.lib.cloud.value
+
 deny contains res if {
 	some broker in input.aws.mq.brokers
-	broker.logging.general.value == false
+	value.is_false(broker.logging.general)
 	res := result.new("Broker does not have general logging enabled.", broker.logging.general)
 }

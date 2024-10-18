@@ -39,6 +39,7 @@ package builtin.aws.ec2.aws0099
 import rego.v1
 
 import data.lib.cloud.metadata
+import data.lib.cloud.value
 
 deny contains res if {
 	some sg in input.aws.ec2.securitygroups
@@ -53,8 +54,8 @@ deny contains res if {
 deny contains res if {
 	some sg in input.aws.ec2.securitygroups
 	isManaged(sg)
-	sg.description.value == "Managed by Terraform"
+	value.is_equal(sg.description, "Managed by Terraform")
 	res := result.new("Security group explicitly uses the default description.", sg.description)
 }
 
-has_description(sg) if sg.description.value != ""
+has_description(sg) if not value.is_empty(sg.description)

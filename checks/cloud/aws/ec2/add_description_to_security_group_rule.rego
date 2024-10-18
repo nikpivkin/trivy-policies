@@ -39,6 +39,7 @@ package builtin.aws.ec2.aws0124
 import rego.v1
 
 import data.lib.cloud.metadata
+import data.lib.cloud.value
 
 deny contains res if {
 	some group in input.aws.ec2.securitygroups
@@ -53,4 +54,4 @@ deny contains res if {
 	)
 }
 
-has_description(rule) if rule.description.value != ""
+has_description(rule) if not value.is_empty(rule.description)

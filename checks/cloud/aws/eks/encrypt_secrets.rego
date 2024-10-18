@@ -34,6 +34,7 @@ package builtin.aws.eks.aws0039
 import rego.v1
 
 import data.lib.cloud.metadata
+import data.lib.cloud.value
 
 deny contains res if {
 	some cluster in input.aws.eks.clusters
@@ -47,7 +48,7 @@ deny contains res if {
 deny contains res if {
 	some cluster in input.aws.eks.clusters
 	secret_encryption_enabled(cluster)
-	not has_cms(cluster)
+	not has_cmk(cluster)
 	res := result.new(
 		"Cluster encryption requires a KMS key ID, which is missing",
 		metadata.obj_by_path(cluster, ["encryption", "kmskeyid"]),
@@ -56,4 +57,4 @@ deny contains res if {
 
 secret_encryption_enabled(cluster) if cluster.encryption.secrets.value == true
 
-has_cms(cluster) if cluster.encryption.kmskeyid.value != ""
+has_cmk(cluster) if not value.is_empty(cluster.encryption.kmskeyid)

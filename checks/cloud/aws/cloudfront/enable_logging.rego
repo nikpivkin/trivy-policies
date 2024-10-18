@@ -34,6 +34,7 @@ package builtin.aws.cloudfront.aws0010
 import rego.v1
 
 import data.lib.cloud.metadata
+import data.lib.cloud.value
 
 deny contains res if {
 	some dist in input.aws.cloudfront.distributions
@@ -44,4 +45,4 @@ deny contains res if {
 	)
 }
 
-has_logging_bucket(dist) := dist.logging.bucket.value != ""
+has_logging_bucket(dist) if not value.is_empty(dist.logging.bucket)

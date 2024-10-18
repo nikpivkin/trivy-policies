@@ -30,9 +30,17 @@ package builtin.google.storage.google0066
 
 import rego.v1
 
+import data.lib.cloud.metadata
+import data.lib.cloud.value
+
 deny contains res if {
 	some bucket in input.google.storage.buckets
 	isManaged(bucket)
-	bucket.encryption.defaultkmskeyname.value == ""
-	res := result.new("Storage bucket encryption does not use a customer-managed key.", bucket.encryption.defaultkmskeyname)
+	not use_cmk(bucket)
+	res := result.new(
+		"Storage bucket encryption does not use a customer-managed key.",
+		metadata.obj_by_path(bucket, ["encryption", "defaultkmskeyname"]),
+	)
 }
+
+use_cmk(bucket) if not value.is_empty(bucket.encryption.defaultkmskeyname)

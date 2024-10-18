@@ -41,14 +41,14 @@ package builtin.aws.cloudtrail.aws0161
 import rego.v1
 
 import data.lib.aws.s3
+import data.lib.cloud.value
 
 deny contains res if {
 	some trail in input.aws.cloudtrail.trails
-	trail.bucketname.value != ""
+	not value.is_empty(trail.bucketname)
 
 	some bucket in input.aws.s3.buckets
 	bucket.name.value == trail.bucketname.value
-
 	s3.bucket_has_public_exposure_acl(bucket)
 	res := result.new("Trail S3 bucket is publicly exposed", bucket)
 }

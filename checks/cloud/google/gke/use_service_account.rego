@@ -30,22 +30,27 @@ package builtin.google.gke.google0050
 
 import rego.v1
 
+import data.lib.cloud.metadata
+import data.lib.cloud.value
+
 deny contains res if {
 	some cluster in input.google.gke.clusters
-	cluster.removedefaultnodepool.value == false
-	cluster.nodeconfig.serviceaccount.value == ""
+	value.is_false(cluster.removedefaultnodepool)
+	not default_account_is_overrided(cluster.nodeconfig)
 	res := result.new(
 		"Cluster does not override the default service account.",
-		cluster.nodeconfig.serviceaccount,
+		metadata.obj_by_path(cluster, ["nodeconfig", "serviceaccount"]),
 	)
 }
 
 deny contains res if {
 	some cluster in input.google.gke.clusters
 	some pool in cluster.nodepools
-	pool.nodeconfig.serviceaccount.value == ""
+	not default_account_is_overrided(pool.nodeconfig)
 	res := result.new(
 		"Node pool does not override the default service account.",
-		pool.nodeconfig.serviceaccount,
+		metadata.obj_by_path(pool, ["nodeconfig", "serviceaccount"]),
 	)
 }
+
+default_account_is_overrided(nodeconfig) if not value.is_empty(nodeconfig.serviceaccount)

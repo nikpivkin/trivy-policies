@@ -35,6 +35,7 @@ package builtin.aws.rds.aws0079
 import rego.v1
 
 import data.lib.cloud.metadata
+import data.lib.cloud.value
 
 deny contains res if {
 	some cluster in input.aws.rds.clusters
@@ -59,4 +60,4 @@ deny contains res if {
 
 encryption_enabled(cluster) := cluster.encryption.encryptstorage.value
 
-has_kms_key(cluster) := cluster.encryption.kmskeyid.value != ""
+has_kms_key(cluster) if not value.is_empty(cluster.encryption.kmskeyid)

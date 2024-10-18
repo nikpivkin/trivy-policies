@@ -33,6 +33,8 @@ package builtin.aws.neptune.aws0128
 
 import rego.v1
 
+import data.lib.cloud.value
+
 deny contains res if {
 	some cluster in input.aws.neptune.clusters
 	not has_kms_key(cluster)
@@ -42,4 +44,4 @@ deny contains res if {
 	)
 }
 
-has_kms_key(cluster) if cluster.kmskeyid.value != ""
+has_kms_key(cluster) if not value.is_empty(cluster.kmskeyid)

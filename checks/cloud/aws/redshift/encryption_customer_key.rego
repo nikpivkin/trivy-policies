@@ -33,6 +33,8 @@ package builtin.aws.redshift.aws0084
 
 import rego.v1
 
+import data.lib.cloud.value
+
 deny contains res if {
 	some cluster in input.aws.redshift.clusters
 	not is_encrypted(cluster)
@@ -54,4 +56,4 @@ deny contains res if {
 
 is_encrypted(cluster) if cluster.encryption.enabled.value
 
-has_kms_key(cluster) if cluster.encryption.kmskeyid.value != ""
+has_kms_key(cluster) if not value.is_empty(cluster.encryption.kmskeyid)

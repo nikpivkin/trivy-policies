@@ -35,6 +35,7 @@ package builtin.aws.ec2.aws0028
 import rego.v1
 
 import data.lib.cloud.metadata
+import data.lib.cloud.value
 
 deny contains res if {
 	some instance in input.aws.ec2.instances
@@ -46,6 +47,7 @@ deny contains res if {
 	)
 }
 
-is_tokens_required(instance) if instance.metadataoptions.httptokens.value == "required"
+# TODO: invert?
+is_tokens_required(instance) if value.is_equal(instance.metadataoptions.httptokens, "required")
 
-is_endpoint_disabled(instance) if instance.metadataoptions.httpendpoint.value == "disabled"
+is_endpoint_disabled(instance) if value.is_equal(instance.metadataoptions.httpendpoint, "disabled")

@@ -34,6 +34,8 @@ package builtin.aws.redshift.aws0127
 
 import rego.v1
 
+import data.lib.cloud.value
+
 deny contains res if {
 	some cluster in input.aws.redshift.clusters
 	not has_subnet_group_name(cluster)
@@ -43,4 +45,4 @@ deny contains res if {
 	)
 }
 
-has_subnet_group_name(cluster) if cluster.subnetgroupname.value != ""
+has_subnet_group_name(cluster) if not value.is_empty(cluster.subnetgroupname)

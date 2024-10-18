@@ -33,11 +33,18 @@ package builtin.aws.sns.aws0095
 
 import rego.v1
 
+import data.lib.cloud.metadata
+import data.lib.cloud.value
+
 deny contains res if {
 	some topic in input.aws.sns.topics
-	topic.encryption.kmskeyid.value == ""
+	not has_kms_key(topic)
 	res := result.new(
 		"Topic does not have encryption enabled.",
-		topic.encryption.kmskeyid,
+		metadata.obj_by_path(topic, ["encryption", "kmskeyid"]),
 	)
+}
+
+has_kms_key(topic) if {
+	not value.is_empty(topic.encryption.kmskeyid)
 }

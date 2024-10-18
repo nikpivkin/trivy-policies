@@ -40,6 +40,7 @@ import rego.v1
 protocol_version_tls1_2_2021 = "TLSv1.2_2021"
 
 import data.lib.cloud.metadata
+import data.lib.cloud.value
 
 deny contains res if {
 	some dist in input.aws.cloudfront.distributions
@@ -51,4 +52,4 @@ deny contains res if {
 	)
 }
 
-is_tls_1_2(dist) := dist.viewercertificate.minimumprotocolversion.value == protocol_version_tls1_2_2021
+is_tls_1_2(dist) := value.is_equal(dist.viewercertificate.minimumprotocolversion, protocol_version_tls1_2_2021)

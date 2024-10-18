@@ -34,16 +34,18 @@ package builtin.aws.cloudfront.aws0012
 
 import rego.v1
 
+import data.lib.cloud.value
+
 viewer_protocol_policy_allow_all := "allow-all"
 
 deny contains res if {
 	some cachebehavior in input.aws.cloudfront.distributions[_]
-	cachebehavior.viewerprotocolpolicy.value == viewer_protocol_policy_allow_all
+	value.is_equal(cachebehavior.viewerprotocolpolicy, viewer_protocol_policy_allow_all)
 	res := result.new("Distribution allows unencrypted communications.", cachebehavior.viewerprotocolpolicy)
 }
 
 deny contains res if {
 	some cachebehavior in input.aws.cloudfront.distributions[_].orderercachebehaviours
-	cachebehavior.viewerprotocolpolicy.value == viewer_protocol_policy_allow_all
+	value.is_equal(cachebehavior.viewerprotocolpolicy, viewer_protocol_policy_allow_all)
 	res := result.new("Distribution allows unencrypted communications.", cachebehavior.viewerprotocolpolicy)
 }

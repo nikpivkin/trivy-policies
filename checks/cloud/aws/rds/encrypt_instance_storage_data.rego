@@ -35,6 +35,7 @@ package builtin.aws.rds.aws0080
 import rego.v1
 
 import data.lib.cloud.metadata
+import data.lib.cloud.value
 
 deny contains res if {
 	some instance in input.aws.rds.instances
@@ -46,4 +47,4 @@ deny contains res if {
 	)
 }
 
-has_replication_source_arn(instance) := instance.replciationsourcearn.value != ""
+has_replication_source_arn(instance) if not value.is_empty(instance.replciationsourcearn)

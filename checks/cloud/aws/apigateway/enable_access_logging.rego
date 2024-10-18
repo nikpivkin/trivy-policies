@@ -34,6 +34,7 @@ package builtin.aws.apigateway.aws0001
 import rego.v1
 
 import data.lib.cloud.metadata
+import data.lib.cloud.value
 
 deny contains res if {
 	some stage in input.aws.apigateway.v1.apis[_].stages
@@ -55,5 +56,5 @@ deny contains res if {
 
 logging_is_configured(stage) if {
 	isManaged(stage)
-	stage.accesslogging.cloudwatchloggrouparn.value != ""
+	not value.is_empty(stage.accesslogging.cloudwatchloggrouparn)
 }
