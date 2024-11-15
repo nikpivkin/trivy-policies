@@ -5,7 +5,7 @@ on:
       - "v*"
 env:
   GH_USER: aqua-bot
-  AQUA_DOCKER_HUB_REPO: aquasec
+  AQUA_DOCKERHUB_REPO: aquasec
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,7 +23,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ vars.DOCKERHUB_USERNAME || env.GH_USER }}
+          username: ${{ vars.GHCR_USER || env.GH_USER }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy policy bundle to ghcr.io (for backwards compatibility)
@@ -57,7 +57,7 @@ jobs:
       - name: Deploy checks bundle to Docker Hub
         run: |
           tags=(latest ${{ env.RELEASE_VERSION}} ${{env.MINOR_VERSION }} ${{ env.MAJOR_VERSION }})
-          repo="${{ vars.DOCKER_HUB_REPOSITORY || env.AQUA_DOCKER_HUB_REPO }}/${{ github.event.repository.name }}"
+          repo="${{ vars.DOCKERHUB_REPOSITORY || env.AQUA_DOCKERHUB_REPO }}/${{ github.event.repository.name }}"
           for tag in ${tags[@]}; do
               echo "Pushing artifact with tag: ${tag}"
               oras push ${repo}:${tag} \
