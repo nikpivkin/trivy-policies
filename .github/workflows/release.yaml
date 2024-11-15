@@ -5,6 +5,7 @@ on:
       - "v*"
 env:
   GH_USER: aqua-bot
+  AQUA_DOCKER_HUB_REPO: aquasec
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,7 +23,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ env.GH_USER }}
+          username: ${{ vars.DOCKERHUB_USERNAME || env.GH_USER }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy policy bundle to ghcr.io (for backwards compatibility)
@@ -30,7 +31,7 @@ jobs:
           tags=(latest ${{ env.RELEASE_VERSION}} ${{env.MINOR_VERSION }} ${{ env.MAJOR_VERSION }})
           for tag in ${tags[@]}; do
               echo "Pushing artifact with tag: ${tag}"
-              oras push ghcr.io/aquasecurity/trivy-policies:${tag} \
+              oras push ghcr.io/${{ github.event.repository.owner.name }}/trivy-policies:${tag} \
               --artifact-type application/vnd.cncf.openpolicyagent.config.v1+json \
               --annotation "org.opencontainers.image.source=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY" \
               --annotation "org.opencontainers.image.revision=$GITHUB_SHA" \
@@ -56,7 +57,7 @@ jobs:
       - name: Deploy checks bundle to Docker Hub
         run: |
           tags=(latest ${{ env.RELEASE_VERSION}} ${{env.MINOR_VERSION }} ${{ env.MAJOR_VERSION }})
-          repo="${{ vars.DOCKER_HUB_REPOSITORY || aquasec }}/${{ github.event.repository.name }}"
+          repo="${{ vars.DOCKER_HUB_REPOSITORY || env.AQUA_DOCKER_HUB_REPO }}/${{ github.event.repository.name }}"
           for tag in ${tags[@]}; do
               echo "Pushing artifact with tag: ${tag}"
               oras push ${repo}:${tag} \
