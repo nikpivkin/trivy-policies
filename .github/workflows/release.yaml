@@ -60,7 +60,7 @@ jobs:
           repo="${{ vars.DOCKERHUB_REPOSITORY || env.AQUA_DOCKERHUB_REPO }}/${{ github.event.repository.name }}"
           for tag in ${tags[@]}; do
               echo "Pushing artifact with tag: ${tag}"
-              oras push ${repo}:${tag} \
+               oras push docker.io/${repo}:${tag} \
               --artifact-type application/vnd.cncf.openpolicyagent.config.v1+json \
               bundle.tar.gz:application/vnd.cncf.openpolicyagent.layer.v1.tar+gzip
           done
