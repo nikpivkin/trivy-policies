@@ -4,7 +4,7 @@ go 1.22.9
 
 toolchain go1.23.0
 
-replace github.com/aquasecurity/trivy => /Users/nikita/projects/trivy
+replace github.com/aquasecurity/trivy => github.com/nikpivkin/trivy v0.0.0-20241208122347-678e7af74ed6
 
 require (
 	github.com/aquasecurity/trivy v0.57.1-0.20241202232542-54130dcc1d77

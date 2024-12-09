@@ -1107,6 +1107,8 @@ github.com/ncruces/go-strftime v0.1.9 h1:bY0MQC28UADQmHmaF5dgpLmImcShSi2kHU9XLdh
 github.com/ncruces/go-strftime v0.1.9/go.mod h1:Fwc5htZGVVkseilnfgOVb9mKy6w1naJmn9CehxcKcls=
 github.com/nikpivkin/opa v0.0.0-20240829080621-16999fcb5464 h1:jhZ8nLVxOAslgzmPdKTyctfDJkMfRgksCypFriHzf4E=
 github.com/nikpivkin/opa v0.0.0-20240829080621-16999fcb5464/go.mod h1:cvSIxY0dexL39hOPqXSZKdBYFNx2Rv8Fu5n3MmTjqtE=
+github.com/nikpivkin/trivy v0.0.0-20241208122347-678e7af74ed6 h1:nEtgpPXEaOR8/TOBipl6Qd4ohR+kee93Q72oMGXmSt4=
+github.com/nikpivkin/trivy v0.0.0-20241208122347-678e7af74ed6/go.mod h1:YM25zfuLoB1FVYGrW5LpcY2VpU5/RGPKvxGB/OhvS8c=
 github.com/nozzle/throttler v0.0.0-20180817012639-2ea982251481 h1:Up6+btDp321ZG5/zdSLo48H9Iaq0UQGthrhWC6pCxzE=
 github.com/nozzle/throttler v0.0.0-20180817012639-2ea982251481/go.mod h1:yKZQO8QE2bHlgozqWDiRVqTFlLQSj30K/6SAK8EeYFw=
 github.com/nxadm/tail v1.4.4/go.mod h1:kenIhsEOeOJmVchQTgglprH7qJGnHDVpk1VPCcaMI8A=
