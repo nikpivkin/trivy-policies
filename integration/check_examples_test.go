@@ -162,6 +162,8 @@ func fileNameByProvider(provider string) string {
 		return "template.yaml"
 	case "dockerfile":
 		return "Dockerfile"
+	case "kubernetes":
+		return "test.yaml"
 	}
 	panic("unreachable: " + provider)
 }
